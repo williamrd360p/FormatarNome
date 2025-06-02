@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formatar Nome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Formatação de Nome</h1>
+  
+  <label for="nome">Bota teu nome completo aqui zé:</label>
+  <input type="text" id="nome" placeholder="Ex: Willian Ramos da Silva">
+  
+  <button onclick="mostrarResultado()">Formatar Nome</button>
+<p></p>
+<p></p>
+  <p>Resultado do nome formatado:</p>
+  <div id="resultado"></div>
+
+  <script>
+    function formatarNome(nome) {
+      // Definir as junções a serem ignoradas
+      const juncoes = ['da', 'de', 'do', 'dos', 'das', 'e'];
+
+
+      // Separar o nome em partes
+      const partes = nome.split(' ');
+
+
+      // Filtrar as partes, ignorando as junções
+      const nomeSemJuncoes = partes.filter(parte => !juncoes.includes(parte.toLowerCase()));
+
+
+      // Pegar o sobrenome (última palavra)
+      const sobrenome = nomeSemJuncoes.pop();
+
+
+      // Colocar o sobrenome e o restante do nome
+      const nomeFormatado = `${sobrenome}, ${nomeSemJuncoes.join(' ')}`;
+
+
+      return nomeFormatado;
+    }
+
+
+    // Função para mostrar o resultado no HTML
+    function mostrarResultado() {
+      const nomeInput = document.getElementById('nome').value;
+      if (nomeInput) {
+        const resultado = formatarNome(nomeInput);
+        document.getElementById('resultado').textContent = resultado + ".";
+  
+      } else {
+        document.getElementById('resultado').textContent = 'Por favor, insira um nome.';
+      }
+    }
+
+    
+    // gostou né José pode falar, MBzao né?
+  </script>
+</body>
+</html>
